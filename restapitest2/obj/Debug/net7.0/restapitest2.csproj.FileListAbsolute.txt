@@ -1,7 +1,0 @@
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.csproj.AssemblyReference.cache
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.GeneratedMSBuildEditorConfig.editorconfig
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.AssemblyInfoInputs.cache
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.AssemblyInfo.cs
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.csproj.CoreCompileInputs.cache
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.MvcApplicationPartsAssemblyInfo.cs
-C:\dotnet6\restapitest2\obj\Debug\net7.0\restapitest2.MvcApplicationPartsAssemblyInfo.cache
