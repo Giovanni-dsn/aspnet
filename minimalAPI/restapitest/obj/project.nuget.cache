@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "UYV5IZ7sNEr8vZpaxGFTYjcfb/559lmYK2FNZDAOVyJFSyVeNJ7nEEohHVU8xTxquSjNLZsnJaF2DpRgAiFUqA==",
+  "dgSpecHash": "LP0YE9hEZmiIzm7+ZFRhhN3c0gNckKUJraLI9CYXEvuVKah68br8J8TYOaNJtpigHaU1HxMGQaxiVSvwHDHIXg==",
   "success": true,
-  "projectFilePath": "C:\\dotnet6\\restapitest\\restapitest.csproj",
+  "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\restapitest\\restapitest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Novais\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

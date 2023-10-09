@@ -2853,11 +2853,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dotnet6\\restapitest\\restapitest.csproj",
+      "projectUniqueName": "C:\\dotnet\\aspnet\\minimalAPI\\restapitest\\restapitest.csproj",
       "projectName": "restapitest",
-      "projectPath": "C:\\dotnet6\\restapitest\\restapitest.csproj",
+      "projectPath": "C:\\dotnet\\aspnet\\minimalAPI\\restapitest\\restapitest.csproj",
       "packagesPath": "C:\\Users\\Novais\\.nuget\\packages\\",
-      "outputPath": "C:\\dotnet6\\restapitest\\obj\\",
+      "outputPath": "C:\\dotnet\\aspnet\\minimalAPI\\restapitest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Novais\\AppData\\Roaming\\NuGet\\NuGet.Config",
