@@ -1,0 +1,17 @@
+C:\dotnet6\mycode\bin\Debug\net7.0\mycode.exe
+C:\dotnet6\mycode\bin\Debug\net7.0\mycode.deps.json
+C:\dotnet6\mycode\bin\Debug\net7.0\mycode.runtimeconfig.json
+C:\dotnet6\mycode\bin\Debug\net7.0\mycode.dll
+C:\dotnet6\mycode\bin\Debug\net7.0\mycode.pdb
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.GeneratedMSBuildEditorConfig.editorconfig
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.AssemblyInfoInputs.cache
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.AssemblyInfo.cs
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.csproj.CoreCompileInputs.cache
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.dll
+C:\dotnet6\mycode\obj\Debug\net7.0\refint\mycode.dll
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.pdb
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.genruntimeconfig.cache
+C:\dotnet6\mycode\obj\Debug\net7.0\ref\mycode.dll
+C:\dotnet6\mycode\bin\Debug\net7.0\FluentColorConsole.dll
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.csproj.AssemblyReference.cache
+C:\dotnet6\mycode\obj\Debug\net7.0\mycode.csproj.CopyComplete

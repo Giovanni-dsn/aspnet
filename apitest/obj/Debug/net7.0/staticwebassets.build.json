@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8bhdySGMPoQ9JOsAbPbim3q5vJiCxsrVWg8H9OZdctc=",
+  "Source": "apitest",
+  "BasePath": "_content/apitest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
