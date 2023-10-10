@@ -12,7 +12,6 @@ namespace ApiPedidos.Domain
 
         [Required]
         public string Name { get; set; }
-
         [Required]
         public string CreatedBy { get; set; }
         [Required]
