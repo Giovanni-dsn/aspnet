@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kEqzcEgrNSmZUPY+OJua62LpkaI8N3g2lD7sBdYC7QgpgwmWmHieWtlHCA0HKSN5alqdQPpA/vVbR/gqIe1Mfw==",
+  "dgSpecHash": "DSk/Htfx6t+cu4tPQLQTQI6OeKVBlffw3SKcQb1pia3Y6HM9XNstvInu8DxY+Ur8tEdy1quHdW5KDhWLMQ+jig==",
   "success": true,
-  "projectFilePath": "C:\\dotnet6\\ApiPedidos\\ApiPedidos.csproj",
+  "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\ApiPedidos\\ApiPedidos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Novais\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

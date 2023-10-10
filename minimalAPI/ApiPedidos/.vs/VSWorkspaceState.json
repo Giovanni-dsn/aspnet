@@ -4,8 +4,8 @@
     "\\Data",
     "\\Domain",
     "\\Domain\\Products",
-    "\\Endpoints"
+    "\\Endpoints",
+    "\\Properties"
   ],
-  "SelectedNode": "\\Domain\\Entity.cs",
   "PreviewInSolutionExplorer": false
 }
