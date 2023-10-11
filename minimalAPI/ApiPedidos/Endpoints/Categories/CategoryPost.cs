@@ -11,17 +11,20 @@ namespace ApiPedidos.Endpoints
 
         public static IResult Action(CategoryRequest categoryRequest, AppDbContext context)
         {
-            var category = new Category
+            var category = new Category(categoryRequest.Name)
             {
-                Name = categoryRequest.Name,
                 CreatedBy = "Tester_1",
                 CreatedOn = DateTime.Now,
                 EditedBy = "Edit_1",
                 EditedOn = DateTime.Now
             };
-            context.Categories.Add(category);
-            context.SaveChanges();
-            return Results.Created($"/categories/{category.Id}", category.Id);
+            if (category.IsValid)
+            {
+                context.Categories.Add(category);
+                context.SaveChanges();
+                return Results.Created($"/categories/{category.Id}", category.Id);
+            }
+            return Results.BadRequest(category.Notifications);
         }
     }
 }

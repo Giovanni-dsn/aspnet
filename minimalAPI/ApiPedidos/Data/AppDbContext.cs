@@ -1,4 +1,5 @@
 ﻿using ApiPedidos.Domain.Products;
+using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -9,10 +10,11 @@ public class AppDbContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
 
-    public AppDbContext(DbContextOptions<AppDbContext> options) :base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.Ignore<Notification>();
         builder.Entity<Product>()
             .Property(p => p.Description).HasMaxLength(500).IsRequired(false);
         builder.Entity<Product>()

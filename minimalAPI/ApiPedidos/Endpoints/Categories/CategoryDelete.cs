@@ -6,7 +6,7 @@ namespace ApiPedidos.Endpoints
 {
     public class CategoryDelete
     {
-        public static string Template => "/categories/{id}";
+        public static string Template => "/categories/{id:guid}";
         public static string[] Methods => new string[] { HttpMethod.Delete.ToString() };
         public static Delegate Handle => Action;
 

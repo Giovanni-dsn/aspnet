@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Flunt.Notifications;
 
 namespace ApiPedidos.Domain
 {
-    public abstract class Entity
+    public abstract class Entity : Notifiable<Notification>
     {
         public Entity()
         {

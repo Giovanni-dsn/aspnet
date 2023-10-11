@@ -172,3 +172,4 @@ C:\dotnet\aspnet\minimalAPI\ApiPedidos\obj\Debug\net6.0\refint\ApiPedidos.dll
 C:\dotnet\aspnet\minimalAPI\ApiPedidos\obj\Debug\net6.0\ApiPedidos.pdb
 C:\dotnet\aspnet\minimalAPI\ApiPedidos\obj\Debug\net6.0\ApiPedidos.genruntimeconfig.cache
 C:\dotnet\aspnet\minimalAPI\ApiPedidos\obj\Debug\net6.0\ref\ApiPedidos.dll
+C:\dotnet\aspnet\minimalAPI\ApiPedidos\bin\Debug\net6.0\Flunt.dll
