@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HLclBdrFK+E5iDL8Vr+bVoH1/TWF6tPZvmlR/Mq6TEk+JsbUTB7dvbQRwKeBkqIaIDBdjFwQG+2QxOueCSqQ1Q==",
+  "dgSpecHash": "uep9YbMTXeWJ/r5M1ShOPLH8tEMHHQ4x57fQlqABnKQD/CwhEh5I9VDHOV5Z4yfaztuAGejvA2wdYxrv11quRg==",
   "success": true,
   "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\TodoApp\\TodoApp.csproj",
   "expectedPackageFiles": [
