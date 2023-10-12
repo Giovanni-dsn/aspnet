@@ -2,6 +2,7 @@ using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
 using ApiPedidos.Endpoints;
 using ApiPedidos.Endpoints.Categories;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<AppDbContext>(builder.Configuration["ConnectionStrings:ApiPedidos"]);
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 var app = builder.Build();
 
 
