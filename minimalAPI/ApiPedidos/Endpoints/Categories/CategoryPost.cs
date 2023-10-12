@@ -11,13 +11,7 @@ namespace ApiPedidos.Endpoints
 
         public static IResult Action(CategoryRequest categoryRequest, AppDbContext context)
         {
-            var category = new Category(categoryRequest.Name)
-            {
-                CreatedBy = "Tester_1",
-                CreatedOn = DateTime.Now,
-                EditedBy = "Edit_1",
-                EditedOn = DateTime.Now
-            };
+            var category = new Category(categoryRequest.Name, "Tester", "Editer");
             if (category.IsValid)
             {
                 context.Categories.Add(category);

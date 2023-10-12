@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5NKHbYfdmaKSYuzL8eHQcvBZ1Jd5oPeIsDOset3O0mNJctzMWVr7Cpbnwk8tqWRWyjf1v8/WtKeXLW2HmyNdlg==",
+  "dgSpecHash": "lp7qak6wB+gYWtWm9VuEt8hdZpBd7hFeAz7WaY9dUxo7bWOANy2HnN2JDTuNPCwyIPe8Zjni9xVr5zxoYKssGA==",
   "success": true,
-  "projectFilePath": "C:\\dotnet6\\apiex\\apiex.csproj",
+  "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\apiex\\apiex.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Novais\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

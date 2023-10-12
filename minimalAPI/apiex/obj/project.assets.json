@@ -2966,11 +2966,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dotnet6\\apiex\\apiex.csproj",
+      "projectUniqueName": "C:\\dotnet\\aspnet\\minimalAPI\\apiex\\apiex.csproj",
       "projectName": "apiex",
-      "projectPath": "C:\\dotnet6\\apiex\\apiex.csproj",
+      "projectPath": "C:\\dotnet\\aspnet\\minimalAPI\\apiex\\apiex.csproj",
       "packagesPath": "C:\\Users\\Novais\\.nuget\\packages\\",
-      "outputPath": "C:\\dotnet6\\apiex\\obj\\",
+      "outputPath": "C:\\dotnet\\aspnet\\minimalAPI\\apiex\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Novais\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3043,7 +3043,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
