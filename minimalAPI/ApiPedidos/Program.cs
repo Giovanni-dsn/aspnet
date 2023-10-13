@@ -2,6 +2,7 @@ using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
 using ApiPedidos.Endpoints;
 using ApiPedidos.Endpoints.Categories;
+using ApiPedidos.Endpoints.Users;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,5 +28,6 @@ app.MapMethods(CategoryGet.Template, CategoryGet.Methods, CategoryGet.Handle);
 app.MapMethods(CategoryGetAll.Template, CategoryGetAll.Methods, CategoryGetAll.Handle);
 app.MapMethods(CategoryPut.Template, CategoryPut.Methods, CategoryPut.Handle);
 app.MapMethods(CategoryDelete.Template, CategoryDelete.Methods, CategoryDelete.Handle);
+app.MapMethods(UserPost.Template, UserPost.Methods, UserPost.Handle);
 
 app.Run();
