@@ -1,5 +1,6 @@
 ﻿using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiPedidos.Endpoints
 {
@@ -8,7 +9,6 @@ namespace ApiPedidos.Endpoints
         public static string Template => "/categories";
         public static string[] Methods => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handle => Action;
-
         public static IResult Action(CategoryRequest categoryRequest, AppDbContext context)
         {
             var category = new Category(categoryRequest.Name, "Tester", "Editer");

@@ -1,8 +1,7 @@
 namespace ApiPedidos.Endpoints.Users;
 
-public record UserRequest(
+public record UserResponse(
     string Email,
-    string Password,
     string Phone,
-    string Name
+    string? Name
 );

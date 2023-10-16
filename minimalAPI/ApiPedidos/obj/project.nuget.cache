@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "seHaFRfPnPUs2gf6VxYKy8KWzDiJVbdFz5pRNHuuEHAmvft9eFUHkYJJWMLtsGmdLc4sAKG7ajbwGiOaAtSByQ==",
+  "dgSpecHash": "gCdP5UlHbjY4OyVKKLj07YETDS66WZc6l6HMcLNhTyUB0u+vFHDQElX6TCoWeS53WTse6LBi4+XuYcKoLeFyqg==",
   "success": true,
   "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\ApiPedidos\\ApiPedidos.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Novais\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Novais\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.23\\microsoft.aspnetcore.authentication.jwtbearer.6.0.23.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.23\\microsoft.aspnetcore.cryptography.internal.6.0.23.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.23\\microsoft.aspnetcore.cryptography.keyderivation.6.0.23.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.23\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.23.nupkg.sha512",
