@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using Data;
+using TodoApp.Models;
 
 [ApiController]
 [Route("[Controller]")]
 public class TodoController : ControllerBase
 {
+    private AppDbContext Context { get; }
+    public TodoController([FromServices] AppDbContext _context) { Context = _context; }
+
     [HttpGet]
     [Route("/[Controller]list")]
-    public IResult Get([FromServices] AppDbContext context)
-    {
-        var listTodo = context.Todos.ToList();
-        return Results.Ok(listTodo);
-    }
+    public IResult Get() => Results.Ok(Context.Todos.ToList());
 
     [HttpGet]
     [Route("/[Controller]/{id}")]
-    public IResult GetById([FromRoute] int id, AppDbContext context)
+    public IResult GetById([FromRoute] int id)
     {
-        var todo = context.Todos.FirstOrDefault(x => x.Id == id);
+        var todo = Context.Todos.FirstOrDefault(x => x.Id == id);
         if (todo == null)
         {
             return Results.NotFound();
@@ -26,43 +26,43 @@ public class TodoController : ControllerBase
     }
 
     [HttpPost]
-    public IResult Post([FromServices] AppDbContext context, [FromBody] Todo request)
+    public IResult Post([FromBody] Todo request)
     {
-        if (request != null)
+        if (ModelState.IsValid)
         {
-            context.Todos.Add(request);
-            context.SaveChanges();
+            Context.Todos.Add(request);
+            Context.SaveChanges();
             return Results.Created($"/Todo/{request.Id}", request);
         }
-        return Results.BadRequest();
+        return Results.BadRequest(ModelState);
     }
 
     [HttpPut]
     [Route("{id}")]
-    public IResult Put([FromRoute] int id, [FromServices] AppDbContext context, [FromBody] Todo request)
+    public IResult Put([FromRoute] int id, [FromBody] Todo request)
     {
-        var todoSaved = context.Todos.FirstOrDefault(x => x.Id == id);
+        var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);
         if (todoSaved == null)
         {
             return Results.NotFound();
         }
         todoSaved.Title = request.Title;
-        context.Update(todoSaved);
-        context.SaveChanges();
+        Context.Update(todoSaved);
+        Context.SaveChanges();
         return Results.Ok(todoSaved);
     }
 
     [HttpDelete]
     [Route("{id}")]
-    public IResult Delete([FromRoute] int id, [FromServices] AppDbContext context)
+    public IResult Delete([FromRoute] int id)
     {
-        var todoSaved = context.Todos.FirstOrDefault(x => x.Id == id);
+        var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);
         if (todoSaved == null)
         {
             return Results.NotFound();
         }
-        context.Todos.Remove(todoSaved);
-        context.SaveChanges();
+        Context.Todos.Remove(todoSaved);
+        Context.SaveChanges();
         return Results.Ok("Removed");
     }
 }

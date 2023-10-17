@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TodoApp.Models;
 
 namespace Data
 {
@@ -7,6 +8,7 @@ namespace Data
         public AppDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Todo> Todos { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -67,3 +67,4 @@ C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\refint\TodoApp.dll
 C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\TodoApp.pdb
 C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\TodoApp.genruntimeconfig.cache
 C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\ref\TodoApp.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\System.Security.Permissions.dll
