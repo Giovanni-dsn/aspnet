@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Data;
 using TodoApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("[Controller]")]
@@ -26,6 +27,7 @@ public class TodoController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize("Admin")]
     public IResult Post([FromBody] Todo request)
     {
         if (ModelState.IsValid)
@@ -39,6 +41,7 @@ public class TodoController : ControllerBase
 
     [HttpPut]
     [Route("{id}")]
+    [Authorize("admin")]
     public IResult Put([FromRoute] int id, [FromBody] Todo request)
     {
         var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);
@@ -54,6 +57,7 @@ public class TodoController : ControllerBase
 
     [HttpDelete]
     [Route("{id}")]
+    [Authorize("admin")]
     public IResult Delete([FromRoute] int id)
     {
         var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);

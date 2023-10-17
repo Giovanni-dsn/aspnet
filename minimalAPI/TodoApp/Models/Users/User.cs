@@ -16,7 +16,7 @@ public class User
     public string Password { get; set; }
 
     [Required]
-    public string Role { get; set; } = "User";
+    public string Role { get; set; } = "user";
 
     public User(string email, string password, string? role)
     {

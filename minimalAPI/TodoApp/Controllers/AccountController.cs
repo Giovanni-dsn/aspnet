@@ -1,4 +1,5 @@
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Models;
 using TodoApp.Services;
@@ -12,6 +13,7 @@ public class AccountController : ControllerBase
     public AccountController([FromServices] AppDbContext context, IConfiguration configuration)
     { Context = context; Configuration = configuration; }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public IActionResult Register([FromBody] User request)
     {
@@ -24,6 +26,7 @@ public class AccountController : ControllerBase
         return Ok();
     }
 
+    [AllowAnonymous]
     [HttpGet("login")]
 
     public IActionResult Login([FromBody] User request)

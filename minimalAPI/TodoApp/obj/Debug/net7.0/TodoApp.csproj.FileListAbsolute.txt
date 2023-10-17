@@ -68,3 +68,10 @@ C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\TodoApp.pdb
 C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\TodoApp.genruntimeconfig.cache
 C:\dotnet\aspnet\minimalAPI\TodoApp\obj\Debug\net7.0\ref\TodoApp.dll
 C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\dotnet\aspnet\minimalAPI\TodoApp\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
