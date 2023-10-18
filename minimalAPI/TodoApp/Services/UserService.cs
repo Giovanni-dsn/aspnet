@@ -10,7 +10,7 @@ namespace TodoApp.Services;
 
 public class UserService
 {
-    public UserAuthenticated? Authenticate(string username, string password, [FromServices] AppDbContext context, IConfiguration configuration)
+    public UserLoginDto? Authenticate(string username, string password, [FromServices] AppDbContext context, IConfiguration configuration)
     {
         var user = context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
         if (user == null) return null;
@@ -28,6 +28,6 @@ public class UserService
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
         user.Password = string.Empty;
-        return new UserAuthenticated(user, tokenHandler.WriteToken(token));
+        return new UserLoginDto(user, tokenHandler.WriteToken(token));
     }
 }
