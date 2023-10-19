@@ -1,5 +1,7 @@
-﻿using ApiPedidos.Data;
+﻿using System.Security.Claims;
+using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
+using ApiPedidos.Dto;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ApiPedidos.Endpoints
@@ -9,13 +11,14 @@ namespace ApiPedidos.Endpoints
         public static string Template => "/categories";
         public static string[] Methods => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handle => Action;
-        public static IResult Action(CategoryRequest categoryRequest, AppDbContext context)
+        public async static Task<IResult> Action(CategoryRequestDto categoryRequest, AppDbContext context, HttpContext http)
         {
-            var category = new Category(categoryRequest.Name, "Tester", "Editer");
+            var userId = http.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            var category = new Category(categoryRequest.Name, userId, userId);
             if (category.IsValid)
             {
-                context.Categories.Add(category);
-                context.SaveChanges();
+                await context.Categories.AddAsync(category);
+                await context.SaveChangesAsync();
                 return Results.Created($"/categories/{category.Id}", category.Id);
             }
             return Results.BadRequest(category.Notifications);

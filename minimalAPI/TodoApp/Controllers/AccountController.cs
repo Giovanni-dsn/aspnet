@@ -32,8 +32,8 @@ public class AccountController : ControllerBase
     public IActionResult Login([FromBody] User request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
-        var service = new UserService();
-        var user = service.Authenticate(request.Username, request.Password, Context, Configuration);
+        UserService userService = new(Context, Configuration);
+        var user = userService.Authenticate(request.Username, request.Password);
         return Ok(user);
     }
 }

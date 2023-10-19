@@ -1,6 +1,5 @@
 ﻿using System.Security.Claims;
-using ApiPedidos.Data;
-using ApiPedidos.Domain.Products;
+using ApiPedidos.Dto;
 using Microsoft.AspNetCore.Identity;
 
 namespace ApiPedidos.Endpoints.Users
@@ -11,7 +10,7 @@ namespace ApiPedidos.Endpoints.Users
         public static string[] Methods => new string[] { HttpMethod.Post.ToString() };
         public static Delegate Handle => Action;
 
-        public static IResult Action(UserRequest userRequest, UserManager<IdentityUser> userManager)
+        public async static Task<IResult> Action(UserRequestDto userRequest, UserManager<IdentityUser> userManager)
         {
             var user = new IdentityUser
             {
@@ -20,9 +19,9 @@ namespace ApiPedidos.Endpoints.Users
                 PhoneNumber = userRequest.Phone
             };
 
-            var userResult = userManager.CreateAsync(user, userRequest.Password).Result;
+            var userResult = await userManager.CreateAsync(user, userRequest.Password);
             if (!userResult.Succeeded) return Results.BadRequest(userResult.Errors.First());
-            var claimResult = userManager.AddClaimAsync(user, new Claim("Name", userRequest.Name)).Result;
+            var claimResult = await userManager.AddClaimAsync(user, new Claim("Name", userRequest.Name));
             if (!claimResult.Succeeded) return Results.BadRequest(claimResult.Errors.First());
             return Results.Created($"/Users/{user.Id}", user.Id);
         }

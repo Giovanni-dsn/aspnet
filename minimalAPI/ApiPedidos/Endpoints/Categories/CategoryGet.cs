@@ -1,6 +1,8 @@
 ﻿using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
+using ApiPedidos.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiPedidos.Endpoints.Categories
 {
@@ -10,12 +12,12 @@ namespace ApiPedidos.Endpoints.Categories
         public static string[] Methods => new string[] { HttpMethod.Get.ToString() };
         public static Delegate Handle => Action;
 
-        public static IResult Action([FromRoute] string name, AppDbContext context)
+        public async static Task<IResult> Action([FromRoute] string name, AppDbContext context)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Name == name);
+            var category = await context.Categories.FirstOrDefaultAsync(x => x.Name == name);
             if (category != null)
             {
-                var response = new CategoryResponse
+                var response = new CategoryResponseDto
                 {
                     Id = category.Id,
                     Name = category.Name,

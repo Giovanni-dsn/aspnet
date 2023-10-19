@@ -10,11 +10,15 @@ namespace TodoApp.Services;
 
 public class UserService
 {
-    public UserLoginDto? Authenticate(string username, string password, [FromServices] AppDbContext context, IConfiguration configuration)
+    private readonly AppDbContext Context;
+    private readonly IConfiguration Configuration;
+
+    public UserService(AppDbContext context, IConfiguration configuration) { Context = context; Configuration = configuration; }
+    public UserLoginDto? Authenticate(string username, string password)
     {
-        var user = context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+        var user = Context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
         if (user == null) return null;
-        var key = Encoding.ASCII.GetBytes(configuration["JwtBearerSettings:SecretKey"]!);
+        var key = Encoding.ASCII.GetBytes(Configuration["JwtBearerSettings:SecretKey"]!);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[] {

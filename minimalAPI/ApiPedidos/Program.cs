@@ -7,7 +7,9 @@ using ApiPedidos.Endpoints.Security;
 using ApiPedidos.Endpoints.Users;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,5 +72,14 @@ app.MapMethods(CategoryDelete.Template, CategoryDelete.Methods, CategoryDelete.H
 app.MapMethods(UserPost.Template, UserPost.Methods, UserPost.Handle);
 app.MapMethods(UserGet.Template, UserGet.Methods, UserGet.Handle);
 app.MapMethods(TokenPost.Template, TokenPost.Methods, TokenPost.Handle);
+
+app.UseExceptionHandler("/error");
+app.Map("/error", (HttpContext http) =>
+{
+    var error = http.Features?.Get<IExceptionHandlerFeature>()?.Error;
+
+    if (error != null) { if (error is SqlException) return Results.Problem(title: "Database out", statusCode: 500); }
+    return Results.Problem(title: "An error ocurred", statusCode: 500);
+});
 
 app.Run();

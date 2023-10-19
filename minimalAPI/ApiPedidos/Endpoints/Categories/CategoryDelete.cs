@@ -1,6 +1,7 @@
 ﻿using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiPedidos.Endpoints
 {
@@ -10,13 +11,13 @@ namespace ApiPedidos.Endpoints
         public static string[] Methods => new string[] { HttpMethod.Delete.ToString() };
         public static Delegate Handle => Action;
 
-        public static IResult Action([FromRoute] Guid id, AppDbContext context)
+        public async static Task<IResult> Action([FromRoute] Guid id, AppDbContext context)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Id == id);
+            var category = await context.Categories.FirstOrDefaultAsync(x => x.Id == id);
             if (category != null)
             {
                 context.Categories.Remove(category);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return Results.Ok();
             }
             return Results.NotFound();

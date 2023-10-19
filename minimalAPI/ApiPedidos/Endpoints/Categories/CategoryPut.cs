@@ -1,6 +1,9 @@
-﻿using ApiPedidos.Data;
+﻿using System.Security.Claims;
+using ApiPedidos.Data;
 using ApiPedidos.Domain.Products;
+using ApiPedidos.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiPedidos.Endpoints
 {
@@ -10,15 +13,18 @@ namespace ApiPedidos.Endpoints
         public static string[] Methods => new string[] { HttpMethod.Put.ToString() };
         public static Delegate Handle => Action;
 
-        public static IResult Action([FromRoute] Guid id, CategoryRequest categoryRequest, AppDbContext context)
+        public async static Task<IResult> Action([FromRoute] Guid id, CategoryRequestDto categoryRequest, AppDbContext context, HttpContext http)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Id == id);
+            var category = await context.Categories.FirstOrDefaultAsync(x => x.Id == id);
             if (category != null)
             {
+                var userId = http.User.Claims.First(c => c.Type == ClaimTypes.NameIdentifier).Value;
                 category.Name = categoryRequest.Name;
                 category.Active = categoryRequest.Active;
+                category.EditedBy = userId;
+                category.EditedOn = DateTime.Now;
                 context.Categories.Update(category);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
                 return Results.Ok();
             }
             return Results.NotFound();
