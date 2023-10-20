@@ -3066,11 +3066,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dotnet\\aspnet\\minimalAPI\\TodoApp\\TodoApp.csproj",
+      "projectUniqueName": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
       "projectName": "TodoApp",
-      "projectPath": "C:\\dotnet\\aspnet\\minimalAPI\\TodoApp\\TodoApp.csproj",
+      "projectPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
       "packagesPath": "C:\\Users\\Novais\\.nuget\\packages\\",
-      "outputPath": "C:\\dotnet\\aspnet\\minimalAPI\\TodoApp\\obj\\",
+      "outputPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Novais\\AppData\\Roaming\\NuGet\\NuGet.Config",

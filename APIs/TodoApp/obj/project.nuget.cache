@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "22R3CI37kENNngO8g/oIEfqnd5kYaOs9lm8zSB57FMFXB4W+ytEIs/sS22OGYHxeNBZ7yafbBDGhvV57XUQIRw==",
+  "dgSpecHash": "w/xfQvCJk2sB/z831/nXbbVQiCrZf7Kk/JuB+/N1eZptauRYS7QbDxU6vNHOpwg8unenanE8xHwIMn3OvIs4uA==",
   "success": true,
-  "projectFilePath": "C:\\dotnet\\aspnet\\minimalAPI\\TodoApp\\TodoApp.csproj",
+  "projectFilePath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Novais\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
