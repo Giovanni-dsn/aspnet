@@ -13,7 +13,7 @@ public class UserService : IUserService
     private readonly AppDbContext Context;
     private readonly IConfiguration Configuration;
 
-    public UserService(AppDbContext context, IConfiguration configuration) { Context = context; Configuration = configuration; }
+    public UserService([FromServices] AppDbContext context, [FromServices] IConfiguration configuration) { Context = context; Configuration = configuration; }
     public UserLoginDto? Authenticate(string username, string password)
     {
         var user = Context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);

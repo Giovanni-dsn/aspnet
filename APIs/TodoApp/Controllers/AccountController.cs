@@ -12,7 +12,7 @@ public class AccountController : ControllerBase
     private IConfiguration Configuration { get; init; }
 
     private IUserService UserService { get; init; }
-    public AccountController([FromServices] AppDbContext context, IConfiguration configuration, IUserService userservice)
+    public AccountController([FromServices] AppDbContext context, [FromServices] IConfiguration configuration, [FromServices] IUserService userservice)
     { Context = context; Configuration = configuration; UserService = userservice; }
 
     [AllowAnonymous]
