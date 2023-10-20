@@ -8,7 +8,7 @@ using TodoApp.Dto;
 using TodoApp.Models;
 namespace TodoApp.Services;
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly AppDbContext Context;
     private readonly IConfiguration Configuration;

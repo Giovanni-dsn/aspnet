@@ -10,8 +10,10 @@ public class AccountController : ControllerBase
 {
     private AppDbContext Context { get; init; }
     private IConfiguration Configuration { get; init; }
-    public AccountController([FromServices] AppDbContext context, IConfiguration configuration)
-    { Context = context; Configuration = configuration; }
+
+    private IUserService UserService { get; init; }
+    public AccountController([FromServices] AppDbContext context, IConfiguration configuration, IUserService userservice)
+    { Context = context; Configuration = configuration; UserService = userservice; }
 
     [AllowAnonymous]
     [HttpPost("register")]
@@ -32,8 +34,7 @@ public class AccountController : ControllerBase
     public IActionResult Login([FromBody] User request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
-        UserService userService = new(Context, Configuration);
-        var user = userService.Authenticate(request.Username, request.Password);
+        var user = UserService.Authenticate(request.Username, request.Password);
         return Ok(user);
     }
 }
