@@ -1,72 +1,87 @@
 using Microsoft.AspNetCore.Mvc;
-using Data;
-using TodoApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using TodoApp.Dto;
+using TodoApp.Repositories;
+using System.Security.Claims;
 
 [ApiController]
 [Route("[Controller]")]
 public class TodoController : ControllerBase
 {
-    private AppDbContext Context { get; }
-    public TodoController([FromServices] AppDbContext _context) { Context = _context; }
-
-    [HttpGet]
-    [Route("/[Controller]list")]
-    public IResult Get() => Results.Ok(Context.Todos.ToList());
-
-    [HttpGet]
-    [Route("/[Controller]/{id}")]
-    public IResult GetById([FromRoute] int id)
+    private readonly TodoRepository Repository;
+    private readonly TodoService TodoService;
+    private readonly UserRepository UserRepository;
+    public TodoController([FromServices] TodoRepository _todoRepository, [FromServices] UserRepository _userRepository, [FromServices] TodoService _todoService)
     {
-        var todo = Context.Todos.FirstOrDefault(x => x.Id == id);
+        Repository = _todoRepository;
+        UserRepository = _userRepository;
+        TodoService = _todoService;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        var username = User.FindFirstValue(ClaimTypes.Email);
+        if (username != null) return Ok(await Repository.GetTodoListUser(username));
+        return NoContent();
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] int id)
+    {
+        var todo = await Repository.GetById(id);
         if (todo == null)
         {
-            return Results.NotFound();
+            return NotFound();
         }
-        return Results.Ok(todo);
+        return Ok(todo);
     }
 
     [HttpPost]
-    [Authorize("Admin")]
-    public IResult Post([FromBody] Todo request)
+    public async Task<IActionResult> Post([FromBody] TodoDto request)
     {
         if (ModelState.IsValid)
         {
-            Context.Todos.Add(request);
-            Context.SaveChanges();
-            return Results.Created($"/Todo/{request.Id}", request);
+            var username = User.FindFirst(ClaimTypes.Email)!.Value;
+            var userTodo = await UserRepository.GetUserByUsername(username);
+            var result = await Repository.CreateTodo(request, userTodo!);
+            return Created($"/Todo/{result.Id}", new { Id = result.Id, Content = new TodoDto(result.Title, result.Done), UserId = result.User.Id });
         }
-        return Results.BadRequest(ModelState);
+        return BadRequest(ModelState);
     }
 
     [HttpPut]
     [Route("{id}")]
-    [Authorize("admin")]
-    public IResult Put([FromRoute] int id, [FromBody] Todo request)
+    public async Task<IActionResult> Put([FromRoute] int id, [FromBody] TodoDto request)
     {
-        var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);
-        if (todoSaved == null)
+        if (ModelState.IsValid)
         {
-            return Results.NotFound();
+            var username = User.FindFirstValue(ClaimTypes.Email)!;
+            var confirm = await TodoService.CheckPermission(id, username);
+            if (confirm == 1)
+            {
+                var result = await Repository.UpdateTodo(id, request);
+                return Ok(result);
+            }
+            if (confirm == 2) return Unauthorized();
+            return Problem("This user does not have a task", default, 202);
         }
-        todoSaved.Title = request.Title;
-        Context.Update(todoSaved);
-        Context.SaveChanges();
-        return Results.Ok(todoSaved);
+        return BadRequest(ModelState);
     }
 
     [HttpDelete]
     [Route("{id}")]
-    [Authorize("admin")]
-    public IResult Delete([FromRoute] int id)
+    public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        var todoSaved = Context.Todos.FirstOrDefault(x => x.Id == id);
-        if (todoSaved == null)
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var confirm = await TodoService.CheckPermission(id, username);
+        if (confirm == 1)
         {
-            return Results.NotFound();
+            Repository.DeleteTodo(id);
+            return Ok("Removed");
         }
-        Context.Todos.Remove(todoSaved);
-        Context.SaveChanges();
-        return Results.Ok("Removed");
+        if (confirm == 0) return Unauthorized();
+        return Problem("This user does not have a task", default, 202);
     }
 }

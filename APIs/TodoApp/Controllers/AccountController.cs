@@ -1,40 +1,40 @@
 using Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TodoApp.Dto;
 using TodoApp.Models;
+using TodoApp.Repositories;
 using TodoApp.Services;
 
 [ApiController]
 [Route("/account")]
 public class AccountController : ControllerBase
 {
-    private AppDbContext Context { get; init; }
-    private IConfiguration Configuration { get; init; }
-
-    private IUserService UserService { get; init; }
-    public AccountController([FromServices] AppDbContext context, [FromServices] IConfiguration configuration, [FromServices] IUserService userservice)
-    { Context = context; Configuration = configuration; UserService = userservice; }
+    private readonly UserService UserService;
+    public AccountController([FromServices] UserService userservice)
+    {
+        UserService = userservice;
+    }
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public IActionResult Register([FromBody] User request)
+    public async Task<IActionResult> Register([FromBody] UserDto request)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-        Context.Users.Add(request);
-        Context.SaveChanges();
-        return Ok();
+        await UserService.Register(request);
+        return Ok(request.Email);
     }
 
     [AllowAnonymous]
     [HttpGet("login")]
 
-    public IActionResult Login([FromBody] User request)
+    public async Task<IActionResult> Login([FromBody] User request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
-        var user = UserService.Authenticate(request.Username, request.Password);
+        var user = await UserService.Authenticate(request.Username, request.Password);
         return Ok(user);
     }
 }

@@ -3,35 +3,32 @@ using System.Security.Claims;
 using System.Text;
 using Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using TodoApp.Dto;
 using TodoApp.Models;
+using TodoApp.Repositories;
 namespace TodoApp.Services;
 
 public class UserService : IUserService
 {
-    private readonly AppDbContext Context;
-    private readonly IConfiguration Configuration;
+    private readonly UserRepository Repository;
+    private readonly TokenService TokenService;
 
-    public UserService([FromServices] AppDbContext context, [FromServices] IConfiguration configuration) { Context = context; Configuration = configuration; }
-    public UserLoginDto? Authenticate(string username, string password)
+    public UserService([FromServices] UserRepository repository, [FromServices] TokenService tokenService)
     {
-        var user = Context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
+        Repository = repository;
+        TokenService = tokenService;
+    }
+    public async Task<LoginDto?> Authenticate(string username, string password)
+    {
+        var user = await Repository.CheckUserLogin(username, password);
         if (user == null) return null;
-        var key = Encoding.ASCII.GetBytes(Configuration["JwtBearerSettings:SecretKey"]!);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new Claim[] {
-            new Claim(ClaimTypes.Email, username),
-            new Claim("Role", user.Role)
-          }),
-            Expires = DateTime.UtcNow.AddHours(1),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
-            Issuer = "TodoAppIssuer"
-        };
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var token = tokenHandler.CreateToken(tokenDescriptor);
+        var token = TokenService.JwtTokenGenerator(user);
         user.Password = string.Empty;
-        return new UserLoginDto(user, tokenHandler.WriteToken(token));
+        return new LoginDto(user, token);
+    }
+
+    public async Task<User> Register(UserDto request)
+    {
+        return await Repository.CreateUser(request);
     }
 }

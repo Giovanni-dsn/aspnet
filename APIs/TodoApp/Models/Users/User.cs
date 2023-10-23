@@ -14,15 +14,10 @@ public class User
     [MinLength(4)]
     [Required]
     public string Password { get; set; }
-
-    [Required]
-    public string Role { get; set; } = "user";
-
-    public User(string email, string password, string? role)
+    public User(string email, string password)
     {
         Username = email;
         Email = email;
         Password = password;
-        if (role != null) Role = role;
     }
 };

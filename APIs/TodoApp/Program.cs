@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using TodoApp.Repositories;
 using TodoApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthorization(x =>
 {
     x.FallbackPolicy = new AuthorizationPolicyBuilder().AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build();
-    x.AddPolicy("user", policy => policy.RequireClaim("Role", "user"));
-    x.AddPolicy("admin", policy => policy.RequireClaim("Role", "admin"));
 });
 builder.Services.AddAuthentication(x =>
 {
@@ -35,7 +34,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<TodoRepository>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TodoService>();
+
 
 var app = builder.Build();
 
@@ -46,10 +50,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.UseHttpsRedirection();
 
 app.MapControllers();
 
