@@ -31,10 +31,10 @@ public class AccountController : ControllerBase
     [AllowAnonymous]
     [HttpGet("login")]
 
-    public async Task<IActionResult> Login([FromBody] User request)
+    public async Task<IActionResult> Login([FromBody] UserDto request)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
-        var user = await UserService.Authenticate(request.Username, request.Password);
+        var user = await UserService.Authenticate(request.Email, request.Password);
         return Ok(user);
     }
 }
