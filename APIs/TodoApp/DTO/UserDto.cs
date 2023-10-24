@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace TodoApp.Dto;
-public class UserDto
+public record UserDto
 {
     [EmailAddress]
     [MinLength(5, ErrorMessage = "Minimum length of 5 characters")]

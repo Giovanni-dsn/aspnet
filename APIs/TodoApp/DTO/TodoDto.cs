@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TodoApp.Dto;
 
-public class TodoDto
+public record TodoDto
 {
     [Required]
     [MinLength(3, ErrorMessage = "At least 3 characters for Title")]
