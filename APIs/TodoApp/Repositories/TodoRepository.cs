@@ -27,7 +27,7 @@ public class TodoRepository : ITodoRepository
 
     public async Task<Todo> CreateTodo(TodoDto request, User user)
     {
-        Todo todo = new(request.Title, request.Done, user);
+        Todo todo = new(request.Title, request.Done, request.Description, user);
         await Context.Todos.AddAsync(todo);
         await Context.SaveChangesAsync();
         return todo;
@@ -38,6 +38,7 @@ public class TodoRepository : ITodoRepository
         var todoSaved = await Context.Todos.FirstAsync(x => x.Id == id);
         todoSaved.Title = request.Title;
         todoSaved.Done = request.Done;
+        if (request.Description != null) todoSaved.Description = request.Description;
         Context.Update(todoSaved);
         await Context.SaveChangesAsync();
         return todoSaved;

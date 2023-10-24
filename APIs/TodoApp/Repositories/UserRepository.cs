@@ -29,4 +29,10 @@ public class UserRepository : IUserRepository
         await Context.SaveChangesAsync();
         return user;
     }
+
+    public async Task<bool> CheckUserExists(string username)
+    {
+        var Unavailable = await Context.Users.AnyAsync(user => user.Username == username);
+        return !Unavailable;
+    }
 }

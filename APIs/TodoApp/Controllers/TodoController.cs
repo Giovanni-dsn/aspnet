@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using TodoApp.Dto;
 using TodoApp.Repositories;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 [ApiController]
 [Route("[Controller]")]
@@ -22,8 +23,9 @@ public class TodoController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var username = User.FindFirstValue(ClaimTypes.Email);
-        if (username != null) return Ok(await Repository.GetTodoListUser(username));
-        return NoContent();
+        var todoList = await Repository.GetTodoListUser(username!);
+        if (todoList.IsNullOrEmpty()) return Problem("This user doesn't have a task", statusCode: 202);
+        return Ok(todoList);
     }
 
     [HttpGet]
@@ -46,7 +48,7 @@ public class TodoController : ControllerBase
             var username = User.FindFirst(ClaimTypes.Email)!.Value;
             var userTodo = await UserRepository.GetUserByUsername(username);
             var result = await Repository.CreateTodo(request, userTodo!);
-            return Created($"/Todo/{result.Id}", new { Id = result.Id, Content = new TodoDto(result.Title, result.Done), UserId = result.User.Id });
+            return Created($"/Todo/{result.Id}", new { Id = result.Id, Content = new TodoDto(result.Title, result.Done, result.Description), UserId = result.User.Id });
         }
         return BadRequest(ModelState);
     }
@@ -65,7 +67,7 @@ public class TodoController : ControllerBase
                 return Ok(result);
             }
             if (confirm == 2) return Unauthorized();
-            return Problem("This user does not have a task", default, 202);
+            return Problem("This user doesn't have a task", statusCode: 202);
         }
         return BadRequest(ModelState);
     }
@@ -82,6 +84,6 @@ public class TodoController : ControllerBase
             return Ok("Removed");
         }
         if (confirm == 0) return Unauthorized();
-        return Problem("This user does not have a task", default, 202);
+        return Problem("This user does not have a task", statusCode: 202);
     }
 }

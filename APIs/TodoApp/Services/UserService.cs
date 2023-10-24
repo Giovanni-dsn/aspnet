@@ -31,4 +31,9 @@ public class UserService : IUserService
     {
         return await Repository.CreateUser(request);
     }
+
+    public async Task<bool> CheckUsernameIsAvailable(string username)
+    {
+        return await Repository.CheckUserExists(username);
+    }
 }

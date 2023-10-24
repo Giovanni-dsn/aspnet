@@ -1,9 +1,6 @@
-using Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dto;
-using TodoApp.Models;
-using TodoApp.Repositories;
 using TodoApp.Services;
 
 [ApiController]
@@ -24,8 +21,13 @@ public class AccountController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-        await UserService.Register(request);
-        return Ok(request.Email);
+        var confirm = await UserService.CheckUsernameIsAvailable(request.Email);
+        if (confirm)
+        {
+            await UserService.Register(request);
+            return Created("account/login", request.Email);
+        }
+        return Problem("E-mail already registered", statusCode: 400);
     }
 
     [AllowAnonymous]
@@ -35,6 +37,7 @@ public class AccountController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         var user = await UserService.Authenticate(request.Email, request.Password);
+        if (user == null) return Problem("Email or password entered is invalid", statusCode: 400);
         return Ok(user);
     }
 }
