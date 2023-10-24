@@ -2,6 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TodoApp.Models;
 public class Todo
@@ -27,5 +28,6 @@ public class Todo
 
     [ForeignKey("UserId")]
     [Required]
+    [JsonIgnore]
     public User User { get; set; }
 }
