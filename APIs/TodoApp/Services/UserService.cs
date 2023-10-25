@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using TodoApp.Dto;
 using TodoApp.Models;
 using TodoApp.Repositories;
@@ -35,5 +36,33 @@ public class UserService : IUserService
     public async Task<bool> CheckUsernameIsAvailable(string username)
     {
         return await Repository.CheckUserExists(username);
+    }
+
+    public async Task<bool> EditUser(string username, UserPutDto request)
+    {
+        if (request.Email == null && request.Password == null) return false;
+        if (request.Email != null)
+        {
+            var avalaible = await CheckUsernameIsAvailable(request.Email);
+            if (!avalaible) return false;
+            if (request.Password != null)
+            {
+                Repository.UpdateUserEmail(username, request.Email);
+                Repository.UpdateUserPassword(request.Email, request.Password);
+                return true;
+            }
+            else
+            {
+                Repository.UpdateUserEmail(username, request.Email);
+                return true;
+            }
+        }
+        Repository.UpdateUserPassword(username, request.Password!);
+        return true;
+    }
+
+    public async Task<bool> DeleteUser(string username)
+    {
+        return await Repository.RemoveUser(username);
     }
 }

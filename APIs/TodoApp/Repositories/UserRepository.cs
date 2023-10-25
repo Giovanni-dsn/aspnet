@@ -12,9 +12,9 @@ public class UserRepository : IUserRepository
         Context = context;
     }
 
-    public async Task<User?> GetUserByUsername(string username)
+    public async Task<User> GetUserByUsername(string username)
     {
-        return await Context.Users.FirstOrDefaultAsync(user => user.Username == username);
+        return await Context.Users.FirstAsync(user => user.Username == username);
     }
 
     public async Task<User?> CheckUserLogin(string username, string password)
@@ -34,5 +34,31 @@ public class UserRepository : IUserRepository
     {
         var Unavailable = await Context.Users.AnyAsync(user => user.Username == username);
         return !Unavailable;
+    }
+
+    public async void UpdateUserEmail(string username, string email)
+    {
+        var userSaved = await GetUserByUsername(username);
+        var userUpdated = new User(email, userSaved.Password);
+        userSaved = userUpdated;
+        Context.Update(userSaved);
+        await Context.SaveChangesAsync();
+    }
+
+    public async void UpdateUserPassword(string username, string password)
+    {
+        var userSaved = await GetUserByUsername(username);
+        var userUpdated = new User(userSaved.Email, password);
+        userSaved = userUpdated;
+        Context.Update(userSaved);
+        await Context.SaveChangesAsync();
+    }
+
+    public async Task<bool> RemoveUser(string username)
+    {
+        var user = await GetUserByUsername(username);
+        Context.Remove(user);
+        await Context.SaveChangesAsync();
+        return true;
     }
 }

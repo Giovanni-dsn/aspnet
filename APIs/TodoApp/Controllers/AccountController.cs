@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dto;
@@ -39,5 +40,25 @@ public class AccountController : ControllerBase
         var user = await UserService.Authenticate(request.Email, request.Password);
         if (user == null) return Problem("Email or password entered is invalid", statusCode: 400);
         return Ok(user);
+    }
+
+    [HttpPut("edit")]
+
+    public async Task<IActionResult> Put([FromBody] UserPutDto request)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var result = await UserService.EditUser(username, request);
+        if (result) return Ok("Edited");
+        return Problem("invalid fields or unavailable username", statusCode: 400);
+    }
+
+    [HttpDelete("delete")]
+    public async Task<IActionResult> Delete()
+    {
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var result = await UserService.DeleteUser(username);
+        if (result) return Ok("Deleted");
+        return Problem();
     }
 }
