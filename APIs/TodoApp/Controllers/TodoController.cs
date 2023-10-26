@@ -4,9 +4,11 @@ using TodoApp.Dto;
 using TodoApp.Repositories;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using TodoApp.Filters;
 
 [ApiController]
 [Route("[Controller]")]
+[ServiceFilter(typeof(ApiLoggingActionFilter))]
 public class TodoController : ControllerBase
 {
     private readonly TodoRepository Repository;

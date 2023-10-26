@@ -2,10 +2,12 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dto;
+using TodoApp.Filters;
 using TodoApp.Services;
 
 [ApiController]
 [Route("/account")]
+[ServiceFilter(typeof(ApiLoggingActionFilter))]
 public class AccountController : ControllerBase
 {
     private readonly UserService UserService;

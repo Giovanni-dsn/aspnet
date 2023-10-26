@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using TodoApp.Filters;
 using TodoApp.Repositories;
 using TodoApp.Services;
 
@@ -39,6 +40,7 @@ builder.Services.AddScoped<UserRepository>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TodoService>();
+builder.Services.AddScoped<ApiLoggingActionFilter>();
 
 
 var app = builder.Build();
