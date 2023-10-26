@@ -10,11 +10,11 @@ public class TodoService
         Repository = repository;
     }
 
-    public async Task<byte> CheckPermission(int id, string username)
+    public async Task<bool> CheckPermission(int id, string username)
     {
         var list = await Repository.GetTodoListUser(username);
-        if (list.IsNullOrEmpty()) return 3;
-        if (list.Any(todo => todo.Id == id)) return 1; else return 0;
+        if (list.IsNullOrEmpty()) return false;
+        if (list.Any(todo => todo.Id == id)) return true; else return false;
 
     }
 }

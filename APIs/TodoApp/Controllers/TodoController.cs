@@ -61,13 +61,12 @@ public class TodoController : ControllerBase
         {
             var username = User.FindFirstValue(ClaimTypes.Email)!;
             var confirm = await TodoService.CheckPermission(id, username);
-            if (confirm == 1)
+            if (confirm)
             {
                 var result = await Repository.UpdateTodo(id, request);
                 return Ok(result);
             }
-            if (confirm == 2) return Unauthorized();
-            return Problem("This user doesn't have a task", statusCode: 202);
+            return Unauthorized();
         }
         return BadRequest(ModelState);
     }
@@ -78,12 +77,11 @@ public class TodoController : ControllerBase
     {
         var username = User.FindFirstValue(ClaimTypes.Email)!;
         var confirm = await TodoService.CheckPermission(id, username);
-        if (confirm == 1)
+        if (confirm)
         {
             Repository.DeleteTodo(id);
             return Ok("Removed");
         }
-        if (confirm == 0) return Unauthorized();
-        return Problem("This user does not have a task", statusCode: 202);
+        return Unauthorized();
     }
 }

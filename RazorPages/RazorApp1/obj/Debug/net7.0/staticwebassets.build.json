@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "PhhG7jsrBCZw1nFbmSlqGHCrF0Lefej0dKf1FBlfC28=",
+  "Source": "RazorApp1",
+  "BasePath": "_content/RazorApp1",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "RazorApp1\\wwwroot",
+      "Source": "RazorApp1",
+      "ContentRoot": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\",
+      "BasePath": "_content/RazorApp1",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\css\\main.css",
+      "SourceId": "RazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\",
+      "BasePath": "_content/RazorApp1",
+      "RelativePath": "css/main.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main.css"
+    },
+    {
+      "Identity": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\imgs\\banner3.jpg",
+      "SourceId": "RazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\",
+      "BasePath": "_content/RazorApp1",
+      "RelativePath": "imgs/banner3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\banner3.jpg"
+    },
+    {
+      "Identity": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\imgs\\img4-removebg-preview.png",
+      "SourceId": "RazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\wwwroot\\",
+      "BasePath": "_content/RazorApp1",
+      "RelativePath": "imgs/img4-removebg-preview.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\img4-removebg-preview.png"
+    }
+  ]
+}

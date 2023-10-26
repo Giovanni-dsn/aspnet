@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj": {}
+    "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\RazorApp1.csproj": {}
   },
   "projects": {
-    "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj": {
+    "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\RazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
-        "projectName": "TodoApp",
-        "projectPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
+        "projectUniqueName": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\RazorApp1.csproj",
+        "projectName": "RazorApp1",
+        "projectPath": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\RazorApp1.csproj",
         "packagesPath": "C:\\Users\\Novais\\.nuget\\packages\\",
-        "outputPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\obj\\",
+        "outputPath": "C:\\dotnet\\aspnet\\RazorPages\\RazorApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Novais\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,38 +39,6 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.Authentication": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[7.0.12, )"
-            },
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[7.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqLite": {
-              "target": "Package",
-              "version": "[7.0.11, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
