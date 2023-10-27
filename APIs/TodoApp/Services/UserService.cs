@@ -1,7 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using TodoApp.Dto;
@@ -28,8 +24,9 @@ public class UserService : IUserService
         return new LoginDto(user, token);
     }
 
-    public async Task<User> Register(UserDto request)
+    public async Task<User?> Register(UserDto request)
     {
+        if (request.Name.IsNullOrEmpty()) return null;
         return await Repository.CreateUser(request);
     }
 

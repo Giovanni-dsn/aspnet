@@ -4,17 +4,15 @@ using TodoApp.Dto;
 using TodoApp.Repositories;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
-using TodoApp.Filters;
 
 [ApiController]
 [Route("[Controller]")]
-[ServiceFilter(typeof(ApiLoggingActionFilter))]
 public class TodoController : ControllerBase
 {
     private readonly TodoRepository Repository;
     private readonly TodoService TodoService;
     private readonly UserRepository UserRepository;
-    public TodoController([FromServices] TodoRepository _todoRepository, [FromServices] UserRepository _userRepository, [FromServices] TodoService _todoService)
+    public TodoController(TodoRepository _todoRepository, UserRepository _userRepository, TodoService _todoService)
     {
         Repository = _todoRepository;
         UserRepository = _userRepository;
@@ -34,12 +32,14 @@ public class TodoController : ControllerBase
     [Route("{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        var todo = await Repository.GetById(id);
-        if (todo == null)
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var permission = await TodoService.CheckPermission(id, username);
+        if (permission)
         {
-            return NotFound();
+            var todo = await Repository.GetById(id);
+            return Ok(todo);
         }
-        return Ok(todo);
+        return Unauthorized();
     }
 
     [HttpPost]
@@ -47,10 +47,10 @@ public class TodoController : ControllerBase
     {
         if (ModelState.IsValid)
         {
-            var username = User.FindFirst(ClaimTypes.Email)!.Value;
-            var userTodo = await UserRepository.GetUserByUsername(username);
-            var result = await Repository.CreateTodo(request, userTodo!);
-            return Created($"/Todo/{result.Id}", new { Id = result.Id, Content = new TodoDto(result.Title, result.Done, result.Description), UserId = result.User.Id });
+            var username = User.FindFirstValue(ClaimTypes.Email)!;
+            var user = await UserRepository.GetUserByUsername(username);
+            var todo = await Repository.CreateTodo(request, user);
+            return Created($"/Todo/{todo.Id}", todo);
         }
         return BadRequest(ModelState);
     }

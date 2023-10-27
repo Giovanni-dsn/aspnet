@@ -2,12 +2,10 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoApp.Dto;
-using TodoApp.Filters;
 using TodoApp.Services;
 
 [ApiController]
 [Route("/account")]
-[ServiceFilter(typeof(ApiLoggingActionFilter))]
 public class AccountController : ControllerBase
 {
     private readonly UserService UserService;
@@ -27,7 +25,8 @@ public class AccountController : ControllerBase
         var confirm = await UserService.CheckUsernameIsAvailable(request.Email);
         if (confirm)
         {
-            await UserService.Register(request);
+            var result = await UserService.Register(request);
+            if (result == null) return Problem("Name is required to register", statusCode: 400);
             return Created("account/login", request.Email);
         }
         return Problem("E-mail already registered", statusCode: 400);

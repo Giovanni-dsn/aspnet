@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace TodoApp.Models;
 public class Todo
 {
-    public Todo() { }
+    public Todo() { } //Constructor empty for EF
     public Todo(string title, bool done, string? description, User user)
     {
         Title = title;
@@ -24,7 +24,7 @@ public class Todo
 
     [StringLength(200, MinimumLength = 5, ErrorMessage = "Description must be bettwen 5 and 200 characters long")]
     public string? Description { get; set; }
-    public DateTime CreatedOn { get; set; } = DateTime.Now.Date;
+    public DateTime CreatedOn { get; set; } = DateTime.Now;
 
     [ForeignKey("UserId")]
     [Required]

@@ -24,7 +24,7 @@ public class UserRepository : IUserRepository
 
     public async Task<User> CreateUser(UserDto dto)
     {
-        var user = new User(dto.Email, dto.Password);
+        var user = new User(dto.Email, dto.Password, dto.Name!, dto.PhoneNumber);
         await Context.Users.AddAsync(user);
         await Context.SaveChangesAsync();
         return user;
@@ -39,8 +39,8 @@ public class UserRepository : IUserRepository
     public async void UpdateUserEmail(string username, string email)
     {
         var userSaved = await GetUserByUsername(username);
-        var userUpdated = new User(email, userSaved.Password);
-        userSaved = userUpdated;
+        userSaved.Email = email;
+        userSaved.Username = email;
         Context.Update(userSaved);
         await Context.SaveChangesAsync();
     }
@@ -48,8 +48,7 @@ public class UserRepository : IUserRepository
     public async void UpdateUserPassword(string username, string password)
     {
         var userSaved = await GetUserByUsername(username);
-        var userUpdated = new User(userSaved.Email, password);
-        userSaved = userUpdated;
+        userSaved.Password = password;
         Context.Update(userSaved);
         await Context.SaveChangesAsync();
     }
