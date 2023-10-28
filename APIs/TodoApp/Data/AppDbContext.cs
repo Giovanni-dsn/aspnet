@@ -10,6 +10,8 @@ namespace Data
         public DbSet<Todo> Todos { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Event> Events { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Todo>().Property(x => x.Title).HasMaxLength(60);

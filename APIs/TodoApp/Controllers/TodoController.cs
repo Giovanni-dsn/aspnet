@@ -24,7 +24,7 @@ public class TodoController : ControllerBase
     {
         var username = User.FindFirstValue(ClaimTypes.Email);
         var todoList = await Repository.GetTodoListUser(username!);
-        if (todoList.IsNullOrEmpty()) return Problem("This user doesn't have a task", statusCode: 202);
+        if (todoList.IsNullOrEmpty()) return Problem("This user doesn't have a task", statusCode: 404);
         return Ok(todoList);
     }
 

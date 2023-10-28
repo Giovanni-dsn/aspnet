@@ -1,5 +1,6 @@
 #pragma warning disable CS8618
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace TodoApp.Models;
 public class User
@@ -12,7 +13,8 @@ public class User
     public string Name { get; set; }
     public string Username { get; set; }
     [Phone]
-    public string PhoneNumber { get; set; } = "";
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+    public string? PhoneNumber { get; set; } = null;
 
     [EmailAddress]
     [Required]
