@@ -26,7 +26,7 @@ public class UserRepository : IUserRepository
     {
         var user = new User(dto.Email, dto.Password, dto.Name!, dto.PhoneNumber);
         await Context.Users.AddAsync(user);
-        await Context.SaveChangesAsync();
+        //await Context.SaveChangesAsync();
         return user;
     }
 

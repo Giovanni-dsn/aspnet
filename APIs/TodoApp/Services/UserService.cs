@@ -10,10 +10,13 @@ public class UserService : IUserService
     private readonly UserRepository Repository;
     private readonly TokenService TokenService;
 
-    public UserService([FromServices] UserRepository repository, [FromServices] TokenService tokenService)
+    private readonly EmailService EmailService;
+
+    public UserService([FromServices] UserRepository repository, [FromServices] TokenService tokenService, EmailService emailService)
     {
         Repository = repository;
         TokenService = tokenService;
+        EmailService = emailService;
     }
     public async Task<LoginDto?> Authenticate(string username, string password)
     {
@@ -27,7 +30,9 @@ public class UserService : IUserService
     public async Task<User?> Register(UserDto request)
     {
         if (request.Name.IsNullOrEmpty()) return null;
-        return await Repository.CreateUser(request);
+        var user = await Repository.CreateUser(request);
+        await EmailService.SendEmailAsync(user);
+        return user;
     }
 
     public async Task<bool> CheckUsernameIsAvailable(string username)

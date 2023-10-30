@@ -34,4 +34,29 @@ public class EventController : ControllerBase
         if (Event == null) return Problem("Date cannot be before the current date", statusCode: 400);
         return Created("/afazer", Event);
     }
+
+    [HttpPut("{id}")]
+
+    public async Task<IActionResult> Put(int id, EventDto request)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var allowed = await _eventService.CheckPermission(id, username);
+        if (!allowed) return Unauthorized();
+        var Event = await _eventService.EditEvent(id, request);
+        if (Event == null) return Problem("Invalid Date or Event Not Found", statusCode: 404);
+        return Ok(Event);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var username = User.FindFirstValue(ClaimTypes.Email)!;
+        var allowed = await _eventService.CheckPermission(id, username);
+        if (!allowed) return Unauthorized();
+        var removed = await _eventService.RemoveEvent(id);
+        if (!removed) return NotFound();
+        return Ok("Removed");
+
+    }
 }

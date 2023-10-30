@@ -16,6 +16,7 @@ public static class ConfigureServices
         Services.AddScoped<TodoService>();
         Services.AddScoped<UserService>();
         Services.AddScoped<EventService>();
+        Services.AddScoped<EmailService>();
     }
 
     public static void AddJwt(this IServiceCollection Services, IConfiguration Configuration)

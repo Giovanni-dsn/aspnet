@@ -28,4 +28,30 @@ public class EventRepository : IEventRepository
         var list = await Context.Events.Where(x => x.User.Id == user.Id).ToListAsync();
         return list;
     }
+
+    public async Task<Event?> GetEventById(int id)
+    {
+        return await Context.Events.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task<Event?> UpdateEvent(int id, EventDto dto)
+    {
+        var Event = await GetEventById(id);
+        if (Event == null) return null;
+        Event.Title = dto.Title;
+        Event.Date = dto.Date;
+        Context.Update(Event);
+        await Context.SaveChangesAsync();
+        return Event;
+
+    }
+
+    public async Task<bool> DeleteEvent(int id)
+    {
+        var Event = await Context.Events.FirstAsync(x => x.Id == id);
+        if (Event == null) return false;
+        Context.Events.Remove(Event);
+        await Context.SaveChangesAsync();
+        return true;
+    }
 }
