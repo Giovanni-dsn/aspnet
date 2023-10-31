@@ -13,6 +13,12 @@ public class EventRepository : IEventRepository
         UserRepository = userRepository;
     }
 
+    public async Task<IEnumerable<Event>> GetEventsCurrentDate()
+    {
+        var list = await Context.Events.Include(x => x.User).Where(x => x.Date.Day == DateTime.Now.Day && x.Date > DateTime.Now).ToListAsync();
+        return list;
+    }
+
     public async Task<Event> CreateEvent(string username, EventDto dto)
     {
         var user = await UserRepository.GetUserByUsername(username);
@@ -53,5 +59,10 @@ public class EventRepository : IEventRepository
         Context.Events.Remove(Event);
         await Context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<bool> CheckExistsTodayEvents()
+    {
+        return await Context.Events.AnyAsync(x => x.Date.Day == DateTime.Now.Day);
     }
 }

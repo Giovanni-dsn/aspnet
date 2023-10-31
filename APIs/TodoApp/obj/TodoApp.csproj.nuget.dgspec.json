@@ -40,6 +40,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "HangFire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.6, )"
+            },
+            "HangFire.Core": {
+              "target": "Package",
+              "version": "[1.8.6, )"
+            },
+            "HangFire.Storage.SqLite": {
+              "target": "Package",
+              "version": "[0.3.4, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.1.0, )"

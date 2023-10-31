@@ -67,4 +67,9 @@ public class UserService : IUserService
     {
         return await Repository.RemoveUser(username);
     }
+
+    public async Task<User> GetUserByEvent(Event Event)
+    {
+        return await Repository.GetUserById(Event.User.Id);
+    }
 }

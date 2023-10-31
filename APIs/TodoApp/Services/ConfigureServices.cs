@@ -1,4 +1,6 @@
 using System.Text;
+using Hangfire;
+using Hangfire.Storage.SQLite;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +19,8 @@ public static class ConfigureServices
         Services.AddScoped<UserService>();
         Services.AddScoped<EventService>();
         Services.AddScoped<EmailService>();
+        Services.AddScoped<DailyJob>();
+
     }
 
     public static void AddJwt(this IServiceCollection Services, IConfiguration Configuration)

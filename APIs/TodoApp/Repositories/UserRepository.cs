@@ -17,6 +17,11 @@ public class UserRepository : IUserRepository
         return await Context.Users.FirstAsync(user => user.Username == username);
     }
 
+    public async Task<User> GetUserById(int id)
+    {
+        return await Context.Users.FirstAsync(user => user.Id == id);
+    }
+
     public async Task<User?> CheckUserLogin(string username, string password)
     {
         return await Context.Users.FirstOrDefaultAsync(x => x.Username == username && x.Password == password);
@@ -26,7 +31,7 @@ public class UserRepository : IUserRepository
     {
         var user = new User(dto.Email, dto.Password, dto.Name!, dto.PhoneNumber);
         await Context.Users.AddAsync(user);
-        //await Context.SaveChangesAsync();
+        await Context.SaveChangesAsync();
         return user;
     }
 

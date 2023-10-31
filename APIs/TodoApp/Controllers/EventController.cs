@@ -1,16 +1,18 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using TodoApp.Repositories;
+using TodoApp.Services;
 [ApiController]
 [Route("/events")]
 public class EventController : ControllerBase
 {
     private readonly EventService _eventService;
+    private readonly DailyJob dailyJob;
 
-    public EventController(EventService service)
+    public EventController(EventService service, DailyJob dailyJob)
     {
         _eventService = service;
+        this.dailyJob = dailyJob;
     }
 
     [HttpGet]
@@ -32,6 +34,9 @@ public class EventController : ControllerBase
         var username = User.FindFirstValue(ClaimTypes.Email)!;
         var Event = await _eventService.CreateEvent(username, request);
         if (Event == null) return Problem("Date cannot be before the current date", statusCode: 400);
+        var permission = DailyJob.Executing;
+        if (!permission)
+            dailyJob.ExecuteJob();
         return Created("/afazer", Event);
     }
 

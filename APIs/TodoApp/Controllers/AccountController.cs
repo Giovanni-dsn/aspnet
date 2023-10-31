@@ -9,9 +9,11 @@ using TodoApp.Services;
 public class AccountController : ControllerBase
 {
     private readonly UserService UserService;
+
     public AccountController([FromServices] UserService userservice)
     {
         UserService = userservice;
+
     }
 
     [AllowAnonymous]

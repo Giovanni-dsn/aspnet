@@ -1,15 +1,18 @@
 using Microsoft.IdentityModel.Tokens;
 using TodoApp.Models;
 using TodoApp.Repositories;
-
+namespace TodoApp.Services;
 public class EventService : IEventService
 {
 
     private readonly EventRepository Repository;
 
-    public EventService(EventRepository eventRepository)
+    private readonly UserRepository UserRepository;
+
+    public EventService(EventRepository eventRepository, UserRepository userRepository)
     {
         Repository = eventRepository;
+        UserRepository = userRepository;
     }
 
     public async Task<Event?> CreateEvent(string username, EventDto dto)
@@ -43,5 +46,15 @@ public class EventService : IEventService
     public async Task<bool> RemoveEvent(int id)
     {
         return await Repository.DeleteEvent(id);
+    }
+
+    public async Task<IEnumerable<Event>> GetEventsCurrentDate()
+    {
+        return await Repository.GetEventsCurrentDate();
+    }
+
+    public async Task<bool> CheckExistsTodayEvents()
+    {
+        return await Repository.CheckExistsTodayEvents();
     }
 }
