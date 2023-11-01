@@ -26,7 +26,7 @@ public class DailyJob
             foreach (Event Event in todayEvents)
             {
                 var user = await UserService.GetUserByEvent(Event);
-                await EmailService.SendEmailToEventAsync(user);
+                await EmailService.SendEmailAsync(user, new InfoEventEmailModel(Event));
             }
             return true;
         }

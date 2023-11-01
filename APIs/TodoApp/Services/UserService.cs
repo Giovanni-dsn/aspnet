@@ -31,7 +31,7 @@ public class UserService : IUserService
     {
         if (request.Name.IsNullOrEmpty()) return null;
         var user = await Repository.CreateUser(request);
-        await EmailService.SendEmailAsync(user);
+        await EmailService.SendEmailAsync(user, new CreateAccountEmailModel(user));
         return user;
     }
 

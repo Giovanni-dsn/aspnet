@@ -11,18 +11,14 @@ namespace TodoApp.Services;
 
 public class EmailService
 {
-    public async Task SendEmailAsync(User user)
+    public async Task SendEmailAsync(User user, EmailModel model)
     {
         var message = new MimeMessage();
         message.From.Add(new MailboxAddress(EmailSettings.Name, EmailSettings.Email));
         message.To.Add(MailboxAddress.Parse(user.Email));
-        message.Subject = CreateAccountEmailModel.Subject;
-        var builder = new BodyBuilder { TextBody ="", HtmlBody = CreateAccountEmailModel.HtmlBody };
+        message.Subject = model.Subject;
+        var builder = new BodyBuilder { TextBody = "", HtmlBody = model.HtmlBody };
         message.Body = builder.ToMessageBody();
-        SendEmailDefault(message);
-    }
-
-    private async void SendEmailDefault(MimeMessage message) {
         try
         {
             var smtpClient = new SmtpClient
@@ -33,24 +29,11 @@ public class EmailService
             await smtpClient.AuthenticateAsync(EmailSettings.Email, EmailSettings.SmtpKey);
             await smtpClient.SendAsync(message);
             await smtpClient.DisconnectAsync(true);
-
         }
         catch (Exception exception)
         {
             throw new InvalidOperationException(exception.Message);
         }
-    }
-
-
-    public async Task SendEmailToEventAsync(User user)
-    {
-        var message = new MimeMessage();
-        message.From.Add(new MailboxAddress(EmailSettings.Name, EmailSettings.Email));
-        message.To.Add(MailboxAddress.Parse(user.Email));
-        message.Subject = InfoEventEmailModel.Subject;
-        var builder = new BodyBuilder { TextBody = "", HtmlBody = InfoEventEmailModel.HtmlBody };
-        message.Body = builder.ToMessageBody();
-        SendEmailDefault(message);
     }
 }
 
