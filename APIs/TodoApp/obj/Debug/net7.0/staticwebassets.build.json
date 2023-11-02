@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "Rjx0142JsIjvLUtMGpRHSL0k6gllMFb8zq6bCUamiiA=",
-  "Source": "TodoApp",
-  "BasePath": "_content/TodoApp",
+  "Hash": "5Nm0TM0eYkdGibtpln7UmjB6vF4yG4S5lzhaPyjQpM8=",
+  "Source": "DailyApp",
+  "BasePath": "_content/DailyApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

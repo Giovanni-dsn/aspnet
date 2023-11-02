@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tTPSwVc1PUzoEIfKmSW5OvlRVqnSKRMPTrHfLezhW207Z9CSxJWYITUg4gMZbhD7wF2gux7Q5tTpsgAcoSaynA==",
+  "dgSpecHash": "7dZnPzcTUKEyeXPuA0cXy9+rE0VBNJjndD2/se9oPw6cbUIB057chk+7a7zil8OGJlitBofIf0pNcc1fUsCU6A==",
   "success": true,
-  "projectFilePath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
+  "projectFilePath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\DailyApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Novais\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Novais\\.nuget\\packages\\hangfire.aspnetcore\\1.8.6\\hangfire.aspnetcore.1.8.6.nupkg.sha512",

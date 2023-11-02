@@ -3754,9 +3754,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
-      "projectName": "TodoApp",
-      "projectPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\TodoApp.csproj",
+      "projectUniqueName": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\DailyApp.csproj",
+      "projectName": "DailyApp",
+      "projectPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\DailyApp.csproj",
       "packagesPath": "C:\\Users\\Novais\\.nuget\\packages\\",
       "outputPath": "C:\\dotnet\\aspnet\\APIs\\TodoApp\\obj\\",
       "projectStyle": "PackageReference",
